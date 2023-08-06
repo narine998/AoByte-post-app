@@ -14,4 +14,4 @@ export const RATE = "rate";
 
 export const HOME_PATH = "/";
 export const SIGNUP_PATH = "/signup";
-export const NEWPOST_PATH = "/new-post";
+export const NEWPOST_PATH = "/create-new-post";

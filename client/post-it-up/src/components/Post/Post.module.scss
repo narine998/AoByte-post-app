@@ -1,0 +1,75 @@
+@import "../../general.scss";
+.disabled {
+  opacity: 0.4;
+}
+
+.postBoard {
+  width: 65%;
+  border: 3px solid $board-boxShadow;
+  border-radius: 3.5rem;
+  padding: 1rem 1.5rem 2rem;
+  box-shadow: 1rem 0.5rem 3rem 0rem #ddbfa6;
+  justify-self: center;
+  a {
+    text-decoration: none;
+  }
+}
+
+.title {
+  font-size: 3.5rem;
+  color: $main-titleColor;
+  font-weight: bold;
+  padding: 1rem;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  svg {
+    font-size: 3.5rem;
+    color: $primary-textColor;
+  }
+  button {
+    font-size: 1.7rem;
+    color: $main-titleColor;
+    font-weight: bold;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.commentLikeCont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  button {
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: capitalize;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: $primary-textColor;
+    svg {
+      font-size: 3rem;
+    }
+  }
+}
+
+.description {
+  font-style: italic;
+  font-size: $main-fontSize;
+  color: #334063;
+  span {
+    cursor: pointer;
+    font-weight: bold;
+    color: $primary-textColor;
+    margin-left: 1rem;
+    &:hover {
+      box-shadow: $primary-bgHoverColor;
+    }
+  }
+}

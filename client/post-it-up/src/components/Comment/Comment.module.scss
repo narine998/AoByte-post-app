@@ -1,0 +1,82 @@
+@import "../../general.scss";
+
+.comment {
+  display: flex;
+  gap: 1rem;
+  background-color: #fafdfabd;
+  padding: 0.8rem;
+  color: $main-titleColor;
+  font-size: 1.6rem;
+}
+
+.rate {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  margin-left: auto;
+  svg {
+    font-size: 2rem;
+  }
+}
+
+.avatar {
+  width: 3rem;
+}
+
+.replyComment {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  textarea {
+    width: 90%;
+    height: 2rem;
+    padding: 1rem;
+    border: 0.1rem solid transparent;
+    border-radius: $main-borderRadius;
+    resize: none;
+    outline: none;
+    background-color: #fff;
+    box-shadow: 0 0 1rem #dfded8;
+    transition: border-color 0.2s;
+    font-size: $main-fontSize;
+    margin: 1rem 0 2rem 1.5rem;
+  }
+}
+
+.actionBox {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 1rem;
+  margin: 0.5rem 0 2rem 0;
+  button {
+    font-size: 1.5rem;
+    color: $primary-textColor;
+    padding: 0.5rem;
+  }
+  span {
+    font-size: $main-fontSize;
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+    color: $primary-textColor;
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  svg {
+    font-size: 2.3rem;
+    color: $main-titleColor;
+  }
+}
+
+.starIcon svg {
+  color: #faaf00;
+  font-size: 3rem;
+}
+
+.deleteIcon svg {
+  color: #6b8fc3;
+  font-size: 4rem;
+}

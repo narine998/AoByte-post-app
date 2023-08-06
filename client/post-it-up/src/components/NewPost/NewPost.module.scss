@@ -1,0 +1,105 @@
+@import "../../general.scss";
+
+.formContainer {
+  width: 50%;
+  background-color: #e4e1e3;
+  padding: 3rem 2rem;
+  margin: 4rem auto;
+  font-size: 1.8rem;
+  border-radius: 2rem;
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    padding: 1rem;
+    align-items: center;
+  }
+  div {
+    width: 80%;
+    text-align: center;
+    textarea {
+      resize: none;
+      width: 100%;
+      padding: 1rem 0.7rem;
+      border-radius: 0.5rem;
+      outline: none;
+      font-size: $main-fontSize;
+      border: 0.1rem solid #d5c3c3;
+
+      &:focus {
+        border: 0.2rem solid #8989dc;
+      }
+    }
+    button {
+      width: 78%;
+      padding: 0.7rem;
+      margin-top: 1rem;
+      font-size: $main-fontSize;
+      color: white;
+      font-weight: bold;
+      background-color: $primary-bgColor;
+      transition: all 0.3s;
+      &:hover {
+        background-color: $primary-bgHoverColor;
+      }
+    }
+  }
+  legend {
+    font-size: 4rem;
+    color: #8989dc;
+    font-weight: bold;
+    margin-bottom: 2rem;
+  }
+  .inputError {
+    border: 0.1rem solid rgb(229, 12, 12);
+  }
+}
+.successMessage {
+  font-size: $main-fontSize;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  .success {
+    color: rgb(18, 129, 18);
+  }
+  .error {
+    color: rgb(90, 11, 11);
+  }
+  a {
+    color: $primary-bgColor;
+    font-weight: bold;
+    font-size: $main-fontSize;
+  }
+}
+
+.formContainer .customFileInput {
+  background-color: hsl(240, 19%, 81%);
+  padding: 1.3rem 0.7rem;
+  color: #4c4cbd;
+  font-weight: bold;
+  width: 60%;
+  border-radius: 0.5rem;
+  font-size: $main-fontSize;
+  border: 0.1rem solid #d5c3c3;
+  margin: 2rem auto 0;
+  transition: all 0.2s;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  cursor: pointer;
+
+  label {
+    cursor: pointer;
+  }
+}
+
+.customFileInput input[type="file"] {
+  position: absolute;
+  left: -9999px;
+}
+
+/* Optional hover and active styles for the custom input */
+.customFileInput:hover,
+.customFileInput:active {
+  background-color: #f2f2f2;
+}

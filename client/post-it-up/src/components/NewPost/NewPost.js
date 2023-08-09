@@ -108,7 +108,7 @@ function NewPost(props) {
           {image && <span>{image.name}</span>}
         </div>
         <div>
-          <Button type="submit">Publish Post</Button>
+          <Button type="submit">Create Post</Button>
         </div>
         <div className={styles.successMessage}>
           <span className={isSuccess ? styles.success : styles.error}>

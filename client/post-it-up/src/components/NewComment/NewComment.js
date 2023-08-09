@@ -21,10 +21,12 @@ function NewComment({ id, sortDir }) {
 
   const sendComment = (postId) => {
     if (commentData.trim()) {
+      const newComment = {
+        text: commentData,
+        rating: rate,
+      };
       setSending(true);
-      dispatch(
-        sendNewComment({ postId, commentData, direction: sortDir, rate })
-      )
+      dispatch(sendNewComment({ postId, newComment, direction: sortDir }))
         .then(() => setSending(false))
         .finally(() => setCommentData(""));
     }

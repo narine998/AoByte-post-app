@@ -17,7 +17,7 @@ const initialState = {
 export const loadPosts = createAsyncThunk("posts/fetchPosts", async () => {
   try {
     const response = await fetchPosts();
-    return findAverageRate(response.data);
+    return response.data;
   } catch (error) {
     throw error;
   }
@@ -27,6 +27,7 @@ export const addNewPost = createAsyncThunk(
   "posts/addPost",
   async (postData) => {
     const response = await addPost(postData);
+    console.log(response);
     return response.data;
   }
 );
@@ -34,12 +35,13 @@ export const addNewPost = createAsyncThunk(
 export const sendNewComment = createAsyncThunk(
   "posts/addComment",
   async (commentInfo) => {
-    const { postId, commentData, direction, rate } = commentInfo;
-    const response = await addComment(postId, {
-      text: commentData,
-      rating: rate,
-    });
-    return { comment: response.data, postId, direction };
+    try {
+      const { postId, newComment, direction } = commentInfo;
+      const response = await addComment(postId, newComment);
+      return { comment: response.data, postId, direction };
+    } catch (error) {
+      throw error;
+    }
   }
 );
 
@@ -88,7 +90,7 @@ export const postsSlice = createSlice({
       })
       .addCase(loadPosts.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.error.message;
       })
       .addCase(addNewPost.fulfilled, (state, action) => {
         state.posts.push(action.payload);

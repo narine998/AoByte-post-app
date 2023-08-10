@@ -49,6 +49,9 @@
     padding: 0.8rem;
     width: 94%;
     margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 }
 
@@ -85,4 +88,19 @@
 .closeIcon svg {
   font-size: 3rem;
   color: $main-titleColor;
+}
+
+.deleteIcon svg {
+  color: #6b8fc3;
+  font-size: 3rem;
+}
+
+.replyCont {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.avatar {
+  width: 3rem;
 }

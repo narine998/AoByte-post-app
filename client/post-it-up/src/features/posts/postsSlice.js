@@ -3,6 +3,7 @@ import {
   addComment,
   addPost,
   deleteComment,
+  deletePost,
   fetchPosts,
   replyComment,
 } from "./postsApi";
@@ -27,8 +28,15 @@ export const addNewPost = createAsyncThunk(
   "posts/addPost",
   async (postData) => {
     const response = await addPost(postData);
-    console.log(response);
     return response.data;
+  }
+);
+
+export const deleteThisPost = createAsyncThunk(
+  "posts/deletePost",
+  async (postId) => {
+    await deletePost(postId);
+    return { postId };
   }
 );
 
@@ -119,6 +127,11 @@ export const postsSlice = createSlice({
           (com) => com.id === action.payload.commentId
         );
         comment.replies.push(action.payload.reply);
+      })
+      .addCase(deleteThisPost.fulfilled, (state, action) => {
+        state.posts = state.posts.filter(
+          (post) => post.id !== action.payload.postId
+        );
       });
   },
 });

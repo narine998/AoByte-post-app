@@ -1,7 +1,4 @@
 @import "../../general.scss";
-.disabled {
-  opacity: 0.4;
-}
 
 .postBoard {
   width: 65%;
@@ -16,7 +13,7 @@
 }
 
 .title {
-  font-size: 3.5rem;
+  font-size: 2rem;
   color: $main-titleColor;
   font-weight: bold;
   padding: 1rem;
@@ -63,6 +60,7 @@
   font-style: italic;
   font-size: $main-fontSize;
   color: #334063;
+  margin-top: 0;
   span {
     cursor: pointer;
     font-weight: bold;
@@ -71,5 +69,24 @@
     &:hover {
       box-shadow: $primary-bgHoverColor;
     }
+  }
+}
+
+.creator {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  svg {
+    font-size: 4rem;
+    color: #333;
+  }
+  h2 {
+    display: flex;
+    gap: 1rem;
+    color: #333;
+    margin: 0;
+  }
+  img {
+    width: 5rem;
   }
 }

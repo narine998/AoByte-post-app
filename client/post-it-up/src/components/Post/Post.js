@@ -2,15 +2,25 @@ import React, { useState } from "react";
 import { Button } from "@mui/material";
 import ModeCommentIcon from "@mui/icons-material/ModeComment";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 
 import Layout from "../../UI/Layout";
 import Comments from "../Comments/Comments";
+import ButtonWrapper from "../../UI/ButtonWrapper";
+
+import girl from "../../assets/girl.png";
 
 import styles from "./Post.module.scss";
+import DropDownMenu from "../DropDownMenu/DropDownMenu";
 
 function Post({ post }) {
   const [showComments, setShowComments] = useState(false);
   const [briefText, setBriefText] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
 
   const showAllComments = () => {
     setShowComments((prevComments) => !prevComments);
@@ -21,7 +31,20 @@ function Post({ post }) {
   };
 
   return (
-    <Layout disabled={post.disabled ? "disabled" : ""}>
+    <Layout>
+      <div className={styles.creator}>
+        <h2>
+          <span>
+            <img src={girl} />
+          </span>
+          <span>Name Surname</span>
+        </h2>
+        <ButtonWrapper onClick={toggleDropdown}>
+          <MoreHorizIcon />
+        </ButtonWrapper>
+      </div>
+      {isOpen && <DropDownMenu postId={post.id} />}
+
       <span className={styles.title}>{post.title}</span>
       <p className={styles.description}>
         {briefText ? post.description.split(".")[0] + "..." : post.description}

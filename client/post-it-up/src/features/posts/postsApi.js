@@ -18,6 +18,10 @@ export const addPost = (postData) => {
   });
 };
 
+export const deletePost = (postId) => {
+  return api.delete(`/posts/${postId}`);
+};
+
 export const addComment = (postId, comment) => {
   return api.post(`/posts/${postId}/comments`, comment);
 };

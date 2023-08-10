@@ -44,6 +44,11 @@ app.post("/api/posts", upload.single("image"), (req, res) => {
   res.send(post);
 });
 
+app.delete("/api/posts/:postId", (req, res) => {
+  const { postId } = req.params;
+  res.send("Post deleted");
+});
+
 app.post("/api/posts/:postId/comments", (req, res) => {
   const comment = req.body;
   const { postId } = req.params;

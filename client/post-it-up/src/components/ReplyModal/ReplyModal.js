@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { Button, CircularProgress } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import CloseIcon from "@mui/icons-material/Close";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 import { useDispatch } from "react-redux";
 
@@ -30,6 +31,7 @@ const ReplyComment = ({
     setReplyData(e.target.value);
   };
 
+  const deleteReply = () => {};
   const sendReply = () => {
     if (replyData.trim()) {
       setSending(true);
@@ -41,7 +43,19 @@ const ReplyComment = ({
 
   const renderReplies = () => {
     if (replies) {
-      return replies.map((reply) => <li key={reply.id}>{reply.text}</li>);
+      return replies.map((reply) => (
+        <li key={reply.id}>
+          <span className={styles.replyCont}>
+            <img className={styles.avatar} src={avatar} alt="avatar" />
+            {reply.text}
+          </span>
+          <ButtonWrapper onClick={deleteReply}>
+            <span className={styles.deleteIcon}>
+              <DeleteIcon />
+            </span>
+          </ButtonWrapper>
+        </li>
+      ));
     }
   };
 

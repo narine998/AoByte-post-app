@@ -3,24 +3,33 @@ import { Button } from "@mui/material";
 import ModeCommentIcon from "@mui/icons-material/ModeComment";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import PublicIcon from "@mui/icons-material/Public";
+import { useSelector } from "react-redux";
+import LockOpenIcon from "@mui/icons-material/LockOpen";
+import { Avatar } from "@mui/material";
 
+import { selectUserInfo } from "../../features/user/userSlice";
 import Layout from "../../UI/Layout";
 import Comments from "../Comments/Comments";
 import ButtonWrapper from "../../UI/ButtonWrapper";
+import DropDownMenu from "../DropDownMenu/DropDownMenu";
+import EditPost from "../EditPost/EditPost";
 
-import girl from "../../assets/girl.png";
+import { createFormattedDate } from "../../helpers";
 
 import styles from "./Post.module.scss";
-import DropDownMenu from "../DropDownMenu/DropDownMenu";
 
 function Post({ post }) {
   const [showComments, setShowComments] = useState(false);
   const [briefText, setBriefText] = useState(true);
-  const [isOpen, setIsOpen] = useState(false);
 
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
+  const {
+    name,
+    surname,
+    _id: author,
+  } = post.authorId || { name: "", surname: "" };
+
+  const { user } = useSelector(selectUserInfo);
 
   const showAllComments = () => {
     setShowComments((prevComments) => !prevComments);
@@ -30,29 +39,59 @@ function Post({ post }) {
     setBriefText((prev) => !prev);
   };
 
+  const handleLikeClick = () => {};
+
   return (
     <Layout>
       <div className={styles.creator}>
         <h2>
           <span>
-            <img src={girl} />
+            <Avatar sx={{ color: "#334063" }} />
           </span>
-          <span>Name Surname</span>
+          <span className={styles.userInfo}>
+            <span>{`${name} ${surname}`}</span>
+            <span>
+              <span>{createFormattedDate(post.createdDate)}</span>
+              {post.public ? <PublicIcon /> : <LockOpenIcon />}
+            </span>
+          </span>
         </h2>
-        <ButtonWrapper onClick={toggleDropdown}>
-          <MoreHorizIcon />
-        </ButtonWrapper>
+        {/* {user && user._id === author && (
+          <ButtonWrapper onClick={toggleDropdown}>
+            <MoreHorizIcon />
+          </ButtonWrapper>
+        )} */}
       </div>
-      {isOpen && <DropDownMenu postId={post.id} />}
+      {/* {user && user._id === author && isOpen && (
+        <>
+          <DropDownMenu
+            userId={author}
+            postId={post._id}
+            editBtnHandler={handleModalOpen}
+            onClose={closeDropDown}
+          />
+          {openEditModal && (
+            <EditPost
+              userId={author}
+              post={post}
+              handleModalClose={handleModalClose}
+              handleDropdownClose={closeDropDown}
+            />
+          )}
+        </>
+      )} */}
 
       <span className={styles.title}>{post.title}</span>
       <p className={styles.description}>
         {briefText ? post.description.split(".")[0] + "..." : post.description}
         <span onClick={getFullDescription}>{briefText ? "more" : "less"} </span>
       </p>
+      <div>
+        <img className={styles.postImg} src={post.imageUrl} />
+      </div>
       <div className={styles.actions}>
         <span>
-          <Button>
+          <Button onClick={handleLikeClick}>
             <span></span>
             <FavoriteIcon />
           </Button>

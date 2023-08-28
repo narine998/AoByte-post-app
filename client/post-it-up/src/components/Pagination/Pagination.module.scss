@@ -1,34 +1,29 @@
 @import "../../general.scss";
 .pagination {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
   margin-top: 5rem;
+
+  ul {
+    justify-content: center;
+  }
 
   li {
     width: 3.5rem;
     height: 3.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 0 0.8rem $board-boxShadow;
-    border-radius: 50%;
-    transition: all 0.5s;
-    &:hover {
-      background-color: $primary-bgHoverColor;
-      box-shadow: 0 0 1.5rem $primary-boxShadow;
-      .white {
-        color: #fff;
-      }
+    div,
+    svg,
+    button {
+      font-size: 1.7rem;
+      color: $main-titleColor;
+      font-weight: bold;
     }
-    span {
-      text-decoration: none;
-      display: inline-block;
-      cursor: pointer;
+
+    button {
       padding: 0.5rem;
-      font-size: 1.8rem;
-      color: #6c4141;
+      &:hover {
+        background-color: $primary-bgHoverColor;
+        color: white;
+        box-shadow: 0 0 1.5rem $primary-boxShadow;
+      }
     }
   }
 }

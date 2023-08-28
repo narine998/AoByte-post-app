@@ -1,5 +1,15 @@
 @import "../../general.scss";
 
+@keyframes dotsMove {
+  0%,
+  100% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(0);
+  }
+}
+
 .signUpContainer {
   width: 50%;
   padding: 4rem;
@@ -38,7 +48,10 @@
   div {
     width: 90%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
   }
   input {
     width: 100%;
@@ -66,20 +79,53 @@
   }
 }
 
-.logo {
-  margin: 0;
-  padding: 0 2rem;
+.header {
+  padding: 2rem;
   img {
     cursor: pointer;
     width: 10rem;
   }
 }
 
-.nameContainer {
-  gap: 2rem;
-  align-items: center;
-  justify-content: space-between;
+.signUpButtonCont {
+  button {
+    position: relative;
+    overflow: hidden;
+    span::after {
+      content: "...";
+      position: absolute;
+      left: 87%;
+      font-size: 3rem;
+      top: 0;
+      animation: dotsMove 1s infinite;
+    }
+  }
+}
+
+.birthDateContainer {
   input {
-    width: 48%;
+    color: #757d8e;
+  }
+  label {
+    align-self: start;
+    padding: 0.5rem;
+  }
+}
+
+.errors {
+  color: rgb(115, 10, 10);
+}
+
+.genderContainer {
+  label {
+    font-size: 1.7rem;
+  }
+  .gender {
+    display: flex;
+    flex-direction: row;
+
+    span {
+      font-size: 1.6rem;
+    }
   }
 }

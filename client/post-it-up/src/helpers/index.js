@@ -19,15 +19,6 @@ export function findAverageRate(arr) {
   });
 }
 
-export function getElemAtRandomIndex(arr) {
-  if (arr.length <= 0) {
-    throw new Error("Array length must be greater than 0");
-  }
-  const index = Math.floor(Math.random() * arr.length);
-
-  return arr[index];
-}
-
 export function sortObjectsByKey(arr, key, ascending = true) {
   if (Array.isArray(arr)) {
     if (ascending) {
@@ -36,4 +27,26 @@ export function sortObjectsByKey(arr, key, ascending = true) {
 
     return arr.sort((a, b) => b[key] - a[key]);
   }
+}
+
+export const createFormattedDate = (dateString, onlyDate = false) => {
+  const dateObject = new Date(dateString);
+  const year = dateObject.getFullYear();
+  const month = dateObject.getMonth() + 1;
+  const day = dateObject.getDate();
+  if (onlyDate) {
+    return `${day}-${month}-${year}`;
+  }
+  const hours = dateObject.getHours();
+  const minutes = dateObject.getMinutes();
+  return `${year}-${month}-${day} ${hours}:${minutes}`;
+};
+
+export function stringAvatar(name) {
+  return {
+    sx: {
+      bgcolor: "#334063",
+    },
+    children: `${name.split(" ")[0][0]}${name.split(" ")[1][0]}`,
+  };
 }

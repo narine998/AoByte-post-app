@@ -9,7 +9,8 @@
   box-shadow: 0.2rem 0.3rem 1rem 0.2rem $board-boxShadow;
   background-color: $post-bgColor;
   border-radius: 2rem;
-  color: $primary-textColor a {
+  color: $primary-textColor;
+  a {
     text-decoration: none;
   }
 }

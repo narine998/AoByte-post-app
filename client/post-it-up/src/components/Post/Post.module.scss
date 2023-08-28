@@ -61,6 +61,7 @@
   font-size: $main-fontSize;
   color: #334063;
   margin-top: 0;
+  padding: 0 1rem;
   span {
     cursor: pointer;
     font-weight: bold;
@@ -78,15 +79,38 @@
   align-items: center;
   svg {
     font-size: 4rem;
-    color: #333;
+    color: $main-titleColor;
   }
   h2 {
     display: flex;
     gap: 1rem;
     color: #333;
     margin: 0;
+    font-size: 1.7rem;
   }
   img {
     width: 5rem;
   }
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+
+  span:nth-of-type(2) {
+    font-size: 1.3rem;
+    gap: 0.5rem;
+    display: flex;
+    align-items: center;
+    color: #333;
+    font-weight: normal;
+    svg {
+      font-size: 1.7rem;
+    }
+  }
+}
+
+.postImg {
+  width: 100%;
 }

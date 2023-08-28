@@ -1,11 +1,26 @@
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import Home from "./pages/Home";
-import SignUpPage, { action as authAction } from "./pages/SignUpPage";
+import SignUpPage from "./pages/SignUpPage";
+import CreatePost from "./pages/CreatePost";
+import VerifyEmailPage from "./pages/VerifyEmailPage";
+import NotFoundPage from "./pages/NotFoundPage";
+import ProfilePage from "./pages/ProfilePage";
 
-import { HOME_PATH, SIGNUP_PATH, NEWPOST_PATH } from "./constants";
+import { isUserLogedIn } from "./features/user/userSlice";
 
-import PublishPost from "./pages/PublishPost";
+import {
+  HOME_PATH,
+  SIGNUP_PATH,
+  NEWPOST_PATH,
+  VERIFY_EMAIL_PATH,
+  PROFILE_PATH,
+  USER_POSTS_PAGE,
+} from "./constants";
+
+import SinglePostPage from "./pages/SinglePostPage";
 
 const router = createBrowserRouter([
   {
@@ -15,15 +30,35 @@ const router = createBrowserRouter([
   {
     path: SIGNUP_PATH,
     element: <SignUpPage />,
-    action: authAction,
+  },
+  {
+    path: VERIFY_EMAIL_PATH,
+    element: <VerifyEmailPage />,
   },
   {
     path: NEWPOST_PATH,
-    element: <PublishPost />,
+    element: <CreatePost />,
+  },
+  {
+    path: PROFILE_PATH,
+    element: <ProfilePage />,
+  },
+  {
+    path: USER_POSTS_PAGE,
+    element: <SinglePostPage />,
+  },
+  {
+    path: "*",
+    element: <NotFoundPage />,
   },
 ]);
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(isUserLogedIn());
+  }, []);
+
   return <RouterProvider router={router} />;
 }
 

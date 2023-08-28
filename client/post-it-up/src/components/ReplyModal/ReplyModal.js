@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
-import { Button, CircularProgress } from "@mui/material";
+import { Avatar, Button, CircularProgress } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import CloseIcon from "@mui/icons-material/Close";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -15,14 +15,7 @@ import { replyPostComment } from "../../features/posts/postsSlice";
 
 import styles from "./ReplyModal.module.scss";
 
-const ReplyComment = ({
-  onClose,
-  postId,
-  commentId,
-  replies,
-  text,
-  avatar,
-}) => {
+const ReplyComment = ({ onClose, postId, commentId, replies, text }) => {
   const [replyData, setReplyData] = useState("");
   const [sending, setSending] = useState(false);
   const dispatch = useDispatch();
@@ -46,7 +39,7 @@ const ReplyComment = ({
       return replies.map((reply) => (
         <li key={reply.id}>
           <span className={styles.replyCont}>
-            <img className={styles.avatar} src={avatar} alt="avatar" />
+            <Avatar sx={{ color: "#334063" }} />
             {reply.text}
           </span>
           <ButtonWrapper onClick={deleteReply}>
@@ -69,7 +62,7 @@ const ReplyComment = ({
       <div className={styles.repliesCont}>
         <h1>
           <span>
-            <img src={avatar} />
+            <Avatar sx={{ color: "#334063" }} />
           </span>
           {text}
         </h1>

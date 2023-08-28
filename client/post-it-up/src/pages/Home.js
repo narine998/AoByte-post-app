@@ -8,11 +8,11 @@ import { loadPosts, selectPostsData } from "../features/posts/postsSlice";
 
 function Home(props) {
   const isModalOpen = useSelector(selectLoginModalStatus);
-  const { loading, error } = useSelector(selectPostsData);
+  const { loading, error, posts } = useSelector(selectPostsData);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(loadPosts());
+    dispatch(loadPosts({ page: 1 }));
   }, []);
 
   if (loading) {
@@ -22,14 +22,8 @@ function Home(props) {
   return (
     <>
       {isModalOpen && <Login />}
-      <Header />
-      {!error ? (
-        <>
-          <PoolSection />
-        </>
-      ) : (
-        <Error>{error}</Error>
-      )}
+      <Header showCreatePostBtn={true} />
+      {!error ? <>{posts.length && <PoolSection />}</> : <Error>{error}</Error>}
     </>
   );
 }

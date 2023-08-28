@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { Button } from "@mui/material";
+import { Avatar, Button } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ReplyIcon from "@mui/icons-material/Reply";
 import StarIcon from "@mui/icons-material/Star";
@@ -9,15 +9,11 @@ import { useDispatch } from "react-redux";
 import { ConfirmDialog, ReplyModal } from "../";
 import ButtonWrapper from "../../UI/ButtonWrapper";
 
-import { getElemAtRandomIndex } from "../../helpers/";
 import { deletePostComment } from "../../features/posts/postsSlice";
-
-import { AVATARS } from "../../constants/";
 
 import styles from "./Comment.module.scss";
 
 function Comment({ postId, comment, sortDir }) {
-  const avatar = useMemo(() => getElemAtRandomIndex(AVATARS), []);
   const [openDialog, setOpenDialog] = useState(false);
   const [openReplyModal, setOpenReplyModal] = useState(false);
 
@@ -39,7 +35,7 @@ function Comment({ postId, comment, sortDir }) {
   return (
     <>
       <div className={styles.comment}>
-        <img className={styles.avatar} src={avatar} alt="avatar" />
+        <Avatar sx={{ color: "#334063" }} />
         {text}
         <span className={styles.rate}>
           <span className={styles.starIcon}>
@@ -76,7 +72,6 @@ function Comment({ postId, comment, sortDir }) {
             postId={postId}
             commentId={id}
             text={text}
-            avatar={avatar}
           />
         )}
       </div>

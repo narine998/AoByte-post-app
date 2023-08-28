@@ -5,6 +5,9 @@ import { useDispatch } from "react-redux";
 
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { useFormik } from "formik";
 
 import { closeModal } from "../../features/loginModal/loginModalSlice";
 
@@ -14,13 +17,35 @@ import { SIGNUP_PATH } from "../../constants";
 
 import useDisableBodyScroll from "../../hooks/UseDisableBodyScroll";
 
-import hiddenEye from "../../assets/hidden.png";
-import openEye from "../../assets/eye.png";
+import { loginUser } from "../../features/user/userSlice";
+import { loginValidationSchema } from "../../validation";
 
 import styles from "./Login.module.scss";
 
 const LoginModal = ({ onClose }) => {
+  const dispatch = useDispatch();
+
   const [showPassword, setShowPassword] = useState(false);
+  const [serverErrors, setServerErrors] = useState({});
+
+  const initialFormData = {
+    email: "",
+    password: "",
+  };
+
+  const loginForm = useFormik({
+    initialValues: initialFormData,
+    validationSchema: loginValidationSchema,
+    onSubmit: (values) => {
+      dispatch(loginUser(values)).then((resp) => {
+        if (resp.payload && resp.payload.errors) {
+          setServerErrors(resp.payload.errors);
+        } else {
+          onClose();
+        }
+      });
+    },
+  });
 
   const showPasswordHandler = () => {
     setShowPassword((prev) => !prev);
@@ -30,33 +55,52 @@ const LoginModal = ({ onClose }) => {
     <div className={styles.modal}>
       <div className={styles.loginContent}>
         <h1>Log Into Post It Up</h1>
-        <form>
+        <form onSubmit={loginForm.handleSubmit}>
           <div className={styles.inputContainer}>
             <TextField
               id="outlined-basic"
-              label="Email or phone"
+              required
+              label="Email"
               variant="outlined"
+              name="email"
+              value={loginForm.values.email}
+              onChange={loginForm.handleChange}
+              onBlur={loginForm.handleBlur}
             />
+
+            <div className={styles.errors}>
+              {loginForm.touched.email &&
+                (loginForm.errors.email || serverErrors.email)}
+            </div>
           </div>
           <div className={styles.inputContainer}>
             <TextField
               id="outlined-password-input"
               label="Password"
+              required
               type={showPassword ? "text" : "password"}
               autoComplete="current-password"
+              name="password"
+              value={loginForm.values.password}
+              onChange={loginForm.handleChange}
+              onBlur={loginForm.handleBlur}
             />
+
+            <div className={styles.errors}>
+              {loginForm.touched.password &&
+                (loginForm.errors.password || serverErrors.password)}
+            </div>
+
             <ButtonWrapper onClick={showPasswordHandler}>
-              <img
-                className={styles.eye}
-                src={showPassword ? openEye : hiddenEye}
-                alt="eye"
-              />
+              {showPassword ? (
+                <VisibilityIcon className={styles.eye} />
+              ) : (
+                <VisibilityOffIcon className={styles.eye} />
+              )}
             </ButtonWrapper>
           </div>
           <div className={styles.buttonContainer}>
-            <Button onClick={onClose} type="submit">
-              Log In
-            </Button>
+            <Button type="submit">Log In</Button>
           </div>
           <div className={styles.signup}>
             <span>

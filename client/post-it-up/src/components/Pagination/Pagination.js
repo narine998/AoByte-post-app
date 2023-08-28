@@ -1,27 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
+import { useSelector } from "react-redux";
+
+import { selectPostsData } from "../../features/posts/postsSlice";
 
 import styles from "./Pagination.module.scss";
 
-function Pagination({ pageCount, handlePageChange, currentPageIndex }) {
-  const pageArr = " ".repeat(pageCount - 1).split(" ");
+function CustomPagination({ page, handleChange }) {
+  const { totalPages } = useSelector(selectPostsData);
 
   return (
-    <ul className={styles.pagination}>
-      {pageArr.map((item, index) => (
-        <li
-          className={currentPageIndex === index + 1 ? styles.currentPage : ""}
-          key={index}
-        >
-          <span
-            className={styles.white}
-            onClick={() => handlePageChange(index + 1)}
-          >
-            {index + 1}
-          </span>
-        </li>
-      ))}
-    </ul>
+    <Stack spacing={2} className={styles.pagination}>
+      <Pagination count={totalPages} page={page} onChange={handleChange} />
+    </Stack>
   );
 }
 
-export default Pagination;
+export default CustomPagination;

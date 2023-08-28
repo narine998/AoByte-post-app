@@ -1,12 +1,4 @@
-import user from "../assets/user.png";
-import woman1 from "../assets/woman1.png";
-import girl from "../assets/girl.png";
-import woman2 from "../assets/woman2.png";
-import avatar from "../assets/avatar.png";
-import man from "../assets/man.png";
-
 export const POSTSPERPAGE = 3;
-export const AVATARS = [user, woman1, girl, woman2, avatar, man];
 
 export const RATE = "rate";
 
@@ -15,3 +7,18 @@ export const RATE = "rate";
 export const HOME_PATH = "/";
 export const SIGNUP_PATH = "/signup";
 export const NEWPOST_PATH = "/create-new-post";
+export const VERIFY_EMAIL_PATH = "/verify-email";
+export const PROFILE_PATH = "/profile/:userId";
+export const EDIT_POST_PAGE = "/posts/:postId/edit";
+export const USER_POSTS_PAGE = "/profile/:userId/posts/:postId";
+export const POST_CATEGORIES = [
+  "General",
+  "Movie",
+  "Book",
+  "Travel",
+  "Food",
+  "Technology",
+  "Fashion",
+  "Sports",
+  "Health and Fitness",
+];

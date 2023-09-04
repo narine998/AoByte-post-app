@@ -13,16 +13,17 @@ function CreatePost(props) {
   useEffect(() => {
     if (!userLoading && !user) {
       navigate(HOME_PATH);
-      return null;
     }
   }, [userLoading, user]);
 
   return (
-    <div className="container">
-      <Header />
-      <NewPost />
-      <Footer />
-    </div>
+    user && (
+      <div className="container">
+        <Header />
+        <NewPost />
+        <Footer />
+      </div>
+    )
   );
 }
 

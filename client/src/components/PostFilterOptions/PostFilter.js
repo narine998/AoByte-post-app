@@ -71,6 +71,8 @@ function PostFilter() {
         } else {
           queries.set(key, value);
         }
+      } else {
+        queries.delete(key);
       }
     });
 

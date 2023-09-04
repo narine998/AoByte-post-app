@@ -1,0 +1,40 @@
+@import "../../general.scss";
+
+.verifyInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  h1 {
+    color: #334063;
+    font-size: 2rem;
+  }
+  button {
+    width: 23rem;
+    font-size: 1.6rem;
+    height: 4rem;
+    border-radius: 1.5rem;
+    background-color: $primary-bgColor;
+    font-weight: bold;
+    transition: all 0.2s;
+    &:hover {
+      background-color: $primary-bgHoverColor;
+    }
+  }
+}
+
+.header {
+  padding: 2rem;
+  img {
+    width: 11rem;
+  }
+}
+
+.verifyInfo {
+  .resend {
+    button {
+      color: #334063;
+    }
+  }
+}

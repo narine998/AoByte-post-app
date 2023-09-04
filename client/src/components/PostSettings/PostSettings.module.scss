@@ -1,0 +1,23 @@
+@import "../../general.scss";
+
+.settings {
+  button {
+    width: 4rem;
+    height: 4rem;
+    background-color: $main-titleColor;
+    color: white;
+    &:hover {
+      background-color: $primary-textColor;
+    }
+    svg {
+      font-size: 2rem;
+    }
+  }
+}
+
+@media (max-width: 70rem) {
+  .dial {
+    bottom: 15%;
+    right: 2%;
+  }
+}

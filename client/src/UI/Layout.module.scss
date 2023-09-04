@@ -1,0 +1,16 @@
+@import "../general.scss";
+
+.board {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  gap: 1.8rem;
+  padding: 3rem 0;
+  box-shadow: 0.2rem 0.3rem 1rem 0.2rem #9ca1ae;
+  background-color: #fafafc;
+  border-radius: 1rem;
+  color: #6b8fc3;
+  a {
+    text-decoration: none;
+  }
+}

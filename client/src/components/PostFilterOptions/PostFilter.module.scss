@@ -1,0 +1,169 @@
+@import "../../general.scss";
+
+.box {
+  height: 60vh;
+  h2 {
+    padding: 1rem;
+    color: $main-titleColor;
+    margin: 0;
+  }
+}
+
+.filter {
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 19rem;
+    background-color: #adb4c6;
+    color: $main-titleColor;
+    font-size: 1.8rem;
+    text-transform: capitalize;
+    font-weight: bold;
+    transition: all 0.4s;
+    &:hover {
+      color: white;
+      background-color: #949aab;
+    }
+  }
+  svg {
+    font-size: 3rem;
+  }
+}
+
+.category,
+.dateRange {
+  padding: 1rem 0;
+  span {
+    font-size: 1.6rem;
+    color: #163ea8;
+  }
+  label,
+  div {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #4767ba;
+  }
+  div {
+    font-size: 1.6rem;
+  }
+}
+
+.category {
+  display: flex;
+  align-items: center;
+  gap: 5rem;
+}
+
+.listItem {
+  span {
+    font-size: 1.7rem;
+    color: #163ea8;
+    font-weight: 500;
+  }
+}
+
+.dateRange {
+  padding: 1rem;
+}
+
+.apply {
+  padding: 1rem;
+  padding-top: 1rem;
+  button {
+    width: 18rem;
+    padding: 0.5rem 1rem;
+    background-color: $main-titleColor;
+    color: white;
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-transform: capitalize;
+    transition: all 0.4s;
+    &:hover {
+      color: $main-titleColor;
+      background-color: #adb4c6;
+    }
+  }
+}
+
+.select {
+  li {
+    font-size: 1.6rem;
+    color: $main-titleColor;
+  }
+}
+
+.sortBar {
+  gap: 2rem;
+  padding: 1rem;
+  margin: 1rem 0;
+
+  div {
+    border-radius: 0.5rem;
+    width: 31rem;
+  }
+}
+
+.authorBox {
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  background-color: white;
+  div {
+    z-index: 1400;
+  }
+}
+
+.authorList {
+  position: absolute;
+  width: 92%;
+  top: 104%;
+  border-radius: 0.2rem;
+  max-height: 10rem;
+  overflow-y: scroll;
+  padding: 1rem;
+  list-style: none;
+  background-color: #f0f2f8;
+  z-index: 1000;
+  margin: 0;
+  li {
+    color: #4767ba;
+    cursor: pointer;
+    padding: 1rem;
+    font-size: 1.6rem;
+    border-radius: 0.5rem;
+    &:hover {
+      background-color: rgb(245, 245, 245);
+    }
+  }
+}
+
+@media (max-width: 50rem) {
+  .category {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 50rem) {
+  .apply {
+    button {
+      font-size: 1.6rem;
+    }
+  }
+  .authorBox,
+  .sortBar {
+    width: 31.6rem;
+    padding: 0.7rem;
+    div {
+      width: 100%;
+    }
+  }
+  .sortBar {
+    div {
+      padding-bottom: 0.8rem;
+    }
+  }
+}

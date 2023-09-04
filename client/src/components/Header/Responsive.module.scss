@@ -1,0 +1,90 @@
+@import "../../general.scss";
+
+.responsiveNav {
+  display: none;
+}
+
+.authCont {
+  display: flex;
+  width: 21rem;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem;
+  height: 100vh;
+
+  button {
+    width: 21rem;
+    font-size: 1.5rem;
+    background-color: $primary-bgColor;
+    font-weight: bold;
+    transition: all 0.2s;
+    &:hover {
+      background-color: $primary-bgHoverColor;
+    }
+  }
+  .authBtn {
+    border: 0.3rem solid #fb951a;
+    color: $primary-bgColor;
+    background-color: white;
+    color: #fb951a;
+    &:hover {
+      background-color: white;
+    }
+  }
+  .blueBtn {
+    background-color: $main-titleColor;
+    color: white;
+    &:hover {
+      box-shadow: 0 0 0.8rem #45547b;
+      background-color: $main-titleColor;
+    }
+  }
+  .profile,
+  .logout {
+    display: flex;
+    gap: 0.8rem;
+    font-weight: bold;
+    font-size: 1.8rem;
+    color: #334063;
+    align-items: center;
+    svg {
+      font-size: 3rem;
+    }
+  }
+  .logout {
+    color: $primary-bgColor;
+  }
+}
+
+.avatarHeader {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  padding: 1rem;
+  padding-top: 0;
+}
+.favicon {
+  cursor: pointer;
+  img {
+    width: 7rem;
+  }
+}
+
+.authCont > div {
+  width: 100%;
+}
+
+@media (max-width: 70rem) {
+  .responsiveNav {
+    display: block;
+  }
+}
+
+@media (max-width: 30rem) {
+  .authCont {
+    button {
+      width: 18rem;
+    }
+  }
+}

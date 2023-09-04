@@ -8,6 +8,7 @@ import {
   getPostLikes,
   getSinglePost,
   likePost,
+  ratePost,
   searchPosts,
   updatePost,
 } from "../controllers/post.js";
@@ -41,6 +42,8 @@ router.delete("/posts/:postId", authorizeUser, permitUser, deletePost);
 router.get("/posts/:postId/likes", getPostLikes);
 
 router.post("/posts/:postId/likes", authorizeUser, likePost);
+
+router.post("/posts/:postId/rating", authorizeUser, ratePost);
 
 router.post("/posts/search", searchPosts);
 

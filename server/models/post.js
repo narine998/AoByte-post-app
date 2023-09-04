@@ -28,10 +28,21 @@ const postSchema = new Schema({
       ref: "User",
     },
   ],
-  rating: {
-    type: Number,
-    default: 1,
-  },
+  ratings: [
+    {
+      userId: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+        required: true,
+      },
+      rate: {
+        type: Number,
+        required: true,
+        min: 1,
+        max: 5,
+      },
+    },
+  ],
   createdDate: {
     type: Date,
     default: Date.now,

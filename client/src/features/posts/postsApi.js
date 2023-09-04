@@ -87,6 +87,16 @@ export const likePost = async (postId) => {
   }
 };
 
+export const ratePost = async (postId, rate) => {
+  try {
+    const response = await api.post(`/posts/${postId}/rating`, { rate });
+
+    return response.data;
+  } catch (err) {
+    return sendRefresh(err, async () => await ratePost(postId, rate));
+  }
+};
+
 export const getLikedUsers = async (postId) => {
   try {
     const response = await api.get(`/posts/${postId}/likes`);

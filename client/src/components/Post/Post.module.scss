@@ -145,6 +145,27 @@
   }
 }
 
+.ratePart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  font-size: $main-fontSize;
+  color: $main-titleColor;
+  button {
+    font-size: 1.6rem;
+    border-radius: 0.3rem;
+    border: 0.2rem solid #d1d5e1;
+    color: $main-titleColor;
+    text-transform: capitalize;
+    cursor: pointer;
+    transition: all 0.2s;
+    &:hover {
+      background-color: #f0f2f8;
+    }
+  }
+}
+
 .modal {
   list-style: none;
   position: absolute;

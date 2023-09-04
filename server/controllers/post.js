@@ -163,6 +163,36 @@ export const likePost = async (req, res) => {
   }
 };
 
+export const ratePost = async (req, res) => {
+  const { postId } = req.params;
+  const userId = req.userId;
+
+  const { rate } = req.body;
+
+  try {
+    const post = await Post.findById(postId);
+    if (!post) {
+      return res.status(404).json({ error: "Post not found" });
+    }
+
+    const existingRating = post.ratings.find(
+      (rating) => rating.userId.toString() === userId
+    );
+
+    if (existingRating && existingRating.rate !== rate) {
+      existingRating.rate = rate;
+    } else {
+      post.ratings.push({ userId, rate });
+    }
+
+    await post.save();
+
+    return res.json({ message: "Post rated" });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+};
+
 export const getPostLikes = async (req, res) => {
   try {
     const { postId } = req.params;

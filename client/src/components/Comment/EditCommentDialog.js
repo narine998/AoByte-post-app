@@ -7,7 +7,6 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import { Rating } from "@mui/material";
 
 import { editComment } from "../../features/comments/commentsApi";
 
@@ -30,7 +29,6 @@ export function EditCommentDialog({
   updateComments,
 }) {
   const [message, setMessage] = useState(oldComment.message);
-  const [rate, setRate] = useState(oldComment.rating);
 
   const { postId, _id } = oldComment;
 
@@ -41,7 +39,6 @@ export function EditCommentDialog({
   const editCommentInfo = () => {
     const comment = {
       message,
-      rating: rate,
     };
     editComment({
       postId,
@@ -107,14 +104,6 @@ export function EditCommentDialog({
             value={message}
             onChange={handleChange}
             className={styles.message}
-          />
-          <Rating
-            sx={{ fontSize: "3rem" }}
-            name="simple-controlled"
-            value={rate}
-            onChange={(event, newValue) => {
-              setRate(newValue);
-            }}
           />
         </DialogContent>
         <DialogActions>

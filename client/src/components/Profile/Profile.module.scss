@@ -1,0 +1,151 @@
+@import "../../general.scss";
+
+.container {
+  max-width: 138rem;
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 9rem;
+}
+
+.profile {
+  padding: 3rem 2rem;
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  h1 {
+    font-size: 3.5rem;
+    margin: 0;
+  }
+}
+
+.userInfoContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+  padding: 1rem 0;
+  box-shadow: 0.2rem 0.3rem 1rem 0.2rem #9ca1ae;
+  background-color: #fafafc;
+  border-radius: 1rem;
+  color: #6b8fc3;
+  margin: 2.5rem 0;
+}
+
+.userInfo,
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  list-style: none;
+}
+
+.info {
+  cursor: pointer;
+  font-size: 1.9rem;
+  font-weight: bold;
+  flex-direction: row;
+  margin: 1rem 0;
+  gap: 4rem;
+  li {
+    padding: 1.5rem;
+    color: #333;
+  }
+  .inActive {
+    &:hover {
+      background-color: #a9b2d8;
+      color: white;
+    }
+  }
+  .active {
+    color: $main-titleColor;
+    border-bottom: 3px solid;
+    padding-bottom: 1rem;
+  }
+}
+
+.userInfo {
+  width: 100%;
+  box-sizing: border-box;
+  color: $main-titleColor;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  li {
+    display: flex;
+    gap: 1rem;
+    font-size: 1.7rem;
+    padding: 1rem;
+    &:hover {
+      background-color: #a9b2d8;
+    }
+  }
+}
+
+.posts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  gap: 5rem;
+  border-radius: 2rem;
+  padding: 5rem 1rem;
+  margin: auto;
+  width: 100%;
+}
+
+.briefPost {
+  width: 100%;
+}
+
+@media (max-width: 106rem) {
+  .posts {
+    padding: 3rem 1rem;
+  }
+  .avatar {
+    h1 {
+      font-size: 2.5rem;
+    }
+  }
+  .info {
+    margin: 0;
+  }
+}
+
+@media (max-width: 70rem) {
+  .avatar > div {
+    width: 7rem;
+    height: 7rem;
+  }
+}
+
+@media (max-width: 50rem) {
+  .container {
+    width: 96%;
+  }
+  .userInfo {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 30rem) {
+  .userInfo {
+    li {
+      font-size: 1.5rem;
+    }
+  }
+  .avatar {
+    h1 {
+      font-size: 2rem;
+      margin: 0;
+    }
+  }
+  .avatar > div {
+    width: 6rem;
+    height: 6rem;
+  }
+  .info {
+    font-size: 1.7rem;
+  }
+}

@@ -35,15 +35,13 @@ export const resendEmail = async (req, res, next) => {
   const oldToken = req.query.token;
   const { email } = jwt.decode(oldToken);
   const token = jwt.sign({ email }, process.env.VERIFY_TOKEN, {
-    expiresIn: "1m",
+    expiresIn: "1d",
   });
 
   try {
     await sendEmail(email, token);
     return res.status(200).json({ message: "Email resent" });
   } catch (err) {
-    return res
-      .status(401)
-      .json({ message: "couldn't resend. Please try again" });
+    return res.status(401).json({ error: "Couldn't resend. Please try again" });
   }
 };

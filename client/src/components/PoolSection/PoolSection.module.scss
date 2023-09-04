@@ -1,0 +1,40 @@
+.poolSection {
+  padding: 2rem;
+  padding-bottom: 4rem;
+  font-size: 1.4rem;
+  margin-top: 9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.postsList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5rem;
+}
+
+.postsList > div {
+  width: 65%;
+}
+
+.filterBar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 2rem;
+}
+
+@media (max-width: 70rem) {
+  .postsList > div {
+    width: 84%;
+  }
+}
+
+@media (max-width: 36rem) {
+  .postsList > div {
+    width: 100%;
+  }
+}

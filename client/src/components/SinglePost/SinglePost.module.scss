@@ -1,0 +1,13 @@
+.post {
+  width: 80%;
+  text-align: center;
+  padding: 3rem 2rem;
+  margin: 10rem auto 0 auto;
+}
+
+@media (max-width: 36rem) {
+  .post {
+    width: 98%;
+    box-sizing: border-box;
+  }
+}

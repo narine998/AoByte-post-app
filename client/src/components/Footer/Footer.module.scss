@@ -1,0 +1,91 @@
+@import "../../general.scss";
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  background-color: #222c48;
+  padding: 1rem;
+  padding-bottom: 2rem;
+  color: white;
+  margin-top: auto;
+  .container {
+    max-width: 138rem;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+  }
+}
+
+.favicon {
+  cursor: pointer;
+  img {
+    width: 10rem;
+  }
+}
+
+.info {
+  margin-top: -1rem;
+  padding: 1rem;
+  ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 5rem;
+    margin: 0;
+    padding: 0;
+    li {
+      svg {
+        font-size: 3rem;
+        transition: all 0.3s;
+        &:hover {
+          box-shadow: 0 0 1.2rem #e0d9d9;
+        }
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+    }
+  }
+}
+
+.copyright {
+  display: flex;
+  gap: 4rem;
+  margin-top: 0.7rem;
+  padding: 1rem;
+  .copy {
+    font-size: 1.2rem;
+    color: #ffffffb2;
+  }
+}
+
+@media (max-width: 70rem) {
+  .info {
+    li {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+@media (max-width: 50rem) {
+  .info {
+    ul {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+@media (max-width: 37rem) {
+  .address {
+    font-size: 1.5rem;
+  }
+  .copyright {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}

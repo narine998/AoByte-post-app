@@ -10,12 +10,12 @@ export const registerUser = async (req, res, next) => {
   const { name, surname, email, password, birthDate, gender } = req.body;
 
   try {
-    const hashedPassword = await bcrypt.hash(password, 12);
+    const hashedPassword = await bcrypt.hash(password.trim(), 12);
 
     const user = new User({
-      name,
-      surname,
-      email,
+      name: name.trim(),
+      surname: surname.trim(),
+      email: email.trim(),
       password: hashedPassword,
       isVerified: false,
       birthDate,
@@ -25,7 +25,7 @@ export const registerUser = async (req, res, next) => {
     await user.save();
 
     const token = jwt.sign({ email }, process.env.VERIFY_TOKEN, {
-      expiresIn: "1m",
+      expiresIn: "1d",
     });
 
     const verifyUser = new EmailToken({
@@ -39,7 +39,7 @@ export const registerUser = async (req, res, next) => {
       res.json({ message: "User registered", emailSend: true });
     });
   } catch (err) {
-    return res.status(500).json({ message: err.message });
+    return res.status(500).json({ error: err.message });
   }
 };
 
@@ -48,7 +48,7 @@ export const loginUser = async (req, res, next) => {
     { userId: req.user._id },
     process.env.ACCESS_TOKEN_SECRET,
     {
-      expiresIn: "2m",
+      expiresIn: "5m",
     }
   );
 
@@ -56,7 +56,7 @@ export const loginUser = async (req, res, next) => {
     { userId: req.user._id },
     process.env.REFRESH_TOKEN_SECRET,
     {
-      expiresIn: "50m",
+      expiresIn: "7d",
     }
   );
 
@@ -67,9 +67,7 @@ export const loginUser = async (req, res, next) => {
   });
 
   res.cookie("refreshToken", refreshToken, {
-    httpOnly: true,
-    // maxAge: 7 * 24 * 60 * 60 * 1000,
-    maxAge: 60 * 60 * 1000,
+    maxAge: 7 * 24 * 60 * 60 * 1000,
     secure: process.env.NODE_ENV === "production",
   });
 
@@ -85,10 +83,12 @@ export const logOutUser = async (req, res, next) => {
     maxAge: 0,
     httpOnly: true,
   });
+
   res.json({ message: "Loged out" });
 };
 
 export const getUser = async (req, res, next) => {
   const user = await User.findOne({ _id: req.userId });
-  res.json({ user });
+
+  return res.json({ user });
 };

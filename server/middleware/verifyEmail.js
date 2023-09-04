@@ -12,15 +12,17 @@ export const verifyEmail = (req, res, next) => {
         if (error instanceof jwt.TokenExpiredError) {
           const decodedToken = jwt.decode(token);
           await EmailToken.deleteOne({ email: decodedToken.email });
-          return res.status(401).json({ message: "expired" });
+
+          return res.status(401).json({ error: "expired" });
         }
-        console.log("Token verification failed:", error.message);
-        return res.status(401).json({ message: "invalid" });
+
+        return res.status(401).json({ error: "invalid" });
       }
       const email = decoded.email;
       await EmailToken.deleteOne({ email: email });
 
       await User.updateOne({ email: email }, { $set: { isVerified: true } });
+
       return res.status(200).json({ message: "verified" });
     });
   }

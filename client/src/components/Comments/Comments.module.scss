@@ -1,0 +1,27 @@
+@import "../../general.scss";
+
+.commentsContainer {
+  width: 98%;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+.commentsText {
+  display: inline-block;
+  padding: 0.8rem;
+  background-color: #fcb753;
+  border-radius: 1rem;
+  cursor: pointer;
+  font-size: $main-fontSize;
+  color: $red-color;
+  transition: all 0.4s;
+  &:hover {
+    background-color: #ca7b36;
+  }
+}
+
+.progress {
+  width: 100%;
+  text-align: center;
+}

@@ -1,0 +1,143 @@
+@import "../../general.scss";
+
+.comment {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  background-color: #e5e1f3;
+  border-radius: 1rem;
+  padding: 1rem;
+  color: #334063;
+  font-size: 1.6rem;
+  p {
+    margin: 0;
+    text-align: left;
+  }
+}
+
+.rate {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  svg {
+    font-size: 2rem;
+  }
+}
+
+.avatar {
+  width: 3rem;
+}
+
+.replyComment {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  textarea {
+    width: 90%;
+    height: 2rem;
+    padding: 1rem;
+    border: 0.1rem solid transparent;
+    border-radius: $main-borderRadius;
+    resize: none;
+    outline: none;
+    background-color: #fff;
+    box-shadow: 0 0 1rem #dfded8;
+    transition: border-color 0.2s;
+    font-size: $main-fontSize;
+    margin: 1rem 0 2rem 1.5rem;
+  }
+}
+
+.actionBox {
+  display: flex;
+  width: 97%;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0.5rem 0;
+  gap: 0.5rem;
+  span {
+    font-size: $main-fontSize;
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+    color: $main-titleColor;
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  svg {
+    font-size: 2.3rem;
+    color: $main-titleColor;
+    cursor: pointer;
+  }
+  .liked {
+    color: #0a0e1957;
+  }
+}
+
+.starIcon svg {
+  color: #faaf00;
+  font-size: 3rem;
+}
+
+.deleteIcon svg {
+  color: $main-titleColor;
+  font-size: 3rem;
+}
+
+.commentBox {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.commentField {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+}
+
+.creator {
+  display: flex;
+  width: 97%;
+  justify-content: space-between;
+  span:first-of-type {
+    font-weight: bold;
+  }
+}
+
+.title {
+  h2 {
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+}
+
+.message {
+  resize: none;
+  width: 50rem;
+  height: 15rem;
+  box-sizing: border-box;
+  padding: 1rem 0.7rem;
+  border-radius: 0.5rem;
+  outline: none;
+  font-size: $main-fontSize;
+  border: 0.1rem solid #d5c3c3;
+
+  &:focus {
+    border: 0.2rem solid #8989dc;
+  }
+}
+
+@media (max-width: 36rem) {
+  .message {
+    max-width: 40rem;
+  }
+}
+
+@media (max-width: 30rem) {
+  .message {
+    max-width: 25rem;
+  }
+}

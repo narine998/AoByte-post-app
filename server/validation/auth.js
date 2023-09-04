@@ -17,7 +17,6 @@ export const validateSignUpForm = async (req, res, next) => {
 
     const userDoc = await User.findOne({ email });
     if (userDoc) {
-      console.log("userDoc", userDoc);
       return res.status(400).json({
         errors: {
           email: "E-Mail exists already, please pick a different one.",
@@ -46,7 +45,7 @@ export const validateSignUpForm = async (req, res, next) => {
       });
       return res.json({ errors: validationErrors });
     }
-    res.status(500).json({ message: "An error occurred." });
+    res.status(500).json({ error: "An error occurred." });
   }
 };
 

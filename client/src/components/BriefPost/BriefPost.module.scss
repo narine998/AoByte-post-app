@@ -1,0 +1,114 @@
+@import "../../general.scss";
+
+.post {
+  width: 77%;
+  height: 35rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 0.1fr;
+  background-color: #edf1f6;
+  margin: 0 auto;
+  border-radius: 1rem;
+  transition: all 0.2s;
+  box-shadow: 0 0 1rem #5b5b6c;
+  &:hover {
+    background-color: #e3e7ec;
+  }
+  span {
+    display: flex;
+    align-items: center;
+    font-size: 1.6rem;
+    gap: 0.5rem;
+    svg {
+      font-size: 2rem;
+    }
+  }
+}
+
+.postImg {
+  width: 100%;
+  text-align: center;
+  img {
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s;
+  }
+  svg {
+    font-size: 31rem;
+    color: #55445e;
+  }
+}
+
+.postInfo {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  padding: 2rem;
+  color: #333;
+
+  a {
+    text-decoration: none;
+    &:hover {
+      span {
+        color: $primary-textColor;
+      }
+    }
+  }
+  span {
+    color: $main-titleColor;
+    font-weight: bold;
+    font-size: 1.8rem;
+  }
+
+  .date {
+    font-size: 1.6rem;
+    font-weight: 500;
+  }
+
+  .category {
+    color: $primary-bgHoverColor;
+    font-weight: bold;
+  }
+}
+
+@media (max-width: 80rem) {
+  .post {
+    width: 97%;
+  }
+}
+
+@media (max-width: 50rem) {
+  .post {
+    width: 100%;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    height: auto;
+  }
+
+  .postImg {
+    grid-row: 1;
+    grid-column: 1;
+    img {
+      height: auto;
+    }
+  }
+
+  .setting,
+  .postInfo {
+    grid-row: 2;
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 36rem) {
+  .postInfo {
+    span {
+      font-size: 1.6rem;
+    }
+  }
+  .date,
+  .category {
+    font-size: 1.5rem;
+  }
+}

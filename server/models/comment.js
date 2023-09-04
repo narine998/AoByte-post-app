@@ -20,16 +20,12 @@ const commentSchema = new Schema({
     ref: "Post",
     required: true,
   },
-  replies: [
+  likes: [
     {
       type: Schema.Types.ObjectId,
-      ref: "Reply",
+      ref: "User",
     },
   ],
-  likes: {
-    type: Number,
-    default: 0,
-  },
 });
 
 export default mongoose.model("Comment", commentSchema);

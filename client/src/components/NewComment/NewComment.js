@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import CircularProgress from "@mui/joy/CircularProgress";
 import SendIcon from "@mui/icons-material/Send";
 import { useDispatch, useSelector } from "react-redux";
-import Rating from "@mui/material/Rating";
 
 import ButtonWrapper from "../../UI/ButtonWrapper";
 
@@ -14,7 +13,6 @@ import styles from "./NewComment.module.scss";
 
 function NewComment({ postId, updateComments }) {
   const [message, setMessage] = useState("");
-  const [rate, setRate] = useState(4);
   const [sending, setSending] = useState(false);
   const dispatch = useDispatch();
 
@@ -29,7 +27,6 @@ function NewComment({ postId, updateComments }) {
       if (message.trim()) {
         const newComment = {
           message,
-          rating: rate,
           author: user._id,
           postId,
         };
@@ -60,17 +57,6 @@ function NewComment({ postId, updateComments }) {
 
   return (
     <div className={styles.commentCont}>
-      <div className={styles.ratePart}>
-        <span>Rate this post</span>
-        <Rating
-          sx={{ fontSize: "3rem" }}
-          name="simple-controlled"
-          value={rate}
-          onChange={(event, newValue) => {
-            setRate(newValue);
-          }}
-        />
-      </div>
       <div className={styles.commentMessage}>
         <textarea
           className={styles.textarea}

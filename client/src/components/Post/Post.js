@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-
-import { getComments } from "../../features/comments/commentsApi";
+import { useDispatch, useSelector } from "react-redux";
+import Rating from "@mui/material/Rating";
+import { Button } from "@mui/material";
 
 import Layout from "../../UI/Layout";
 import Comments from "../Comments/Comments";
@@ -8,10 +9,25 @@ import Comments from "../Comments/Comments";
 import { PostInfo } from "./PostInfo";
 import { PostActions } from "./PostActions";
 
+import { ratePost } from "../../features/posts/postsApi";
+import { selectUserInfo } from "../../features/user/userSlice";
+import { getComments } from "../../features/comments/commentsApi";
+import { openModal } from "../../features/loginModal/loginModalSlice";
+
+import styles from "./Post.module.scss";
+
 function Post({ post }) {
   const [showComments, setShowComments] = useState(false);
   const [fetching, setFetching] = useState(false);
   const [comments, setComments] = useState([]);
+
+  const { user } = useSelector(selectUserInfo);
+
+  const userRate = post.ratings.find((rate) => rate.userId === user?._id);
+
+  const [hasRated, setHasRated] = useState(userRate?.rate ? true : false);
+  const [rate, setRate] = useState(userRate?.rate || 0);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (showComments) {
@@ -25,6 +41,16 @@ function Post({ post }) {
 
   const showAllComments = () => {
     setShowComments((prevComments) => !prevComments);
+  };
+
+  const handleRatePost = () => {
+    if (user) {
+      ratePost(post._id, rate).then(() => {
+        setHasRated(true);
+      });
+    } else {
+      dispatch(openModal());
+    }
   };
 
   const updateComments = (info, mode) => {
@@ -54,7 +80,24 @@ function Post({ post }) {
         comments={comments}
         post={post}
       />
-
+      <div className={styles.ratePart}>
+        <Button onClick={handleRatePost}>
+          {hasRated ? "Rated" : "Rate this post"}
+        </Button>
+        <Rating
+          sx={{ fontSize: "3rem" }}
+          name="simple-controlled"
+          value={rate}
+          onChange={(event, newValue) => {
+            setRate((prev) => {
+              if (prev === newValue) {
+                setHasRated(true);
+              }
+              return newValue;
+            });
+          }}
+        />
+      </div>
       {showComments && (
         <Comments
           commentData={comments}

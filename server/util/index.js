@@ -41,21 +41,6 @@ export function buildAggregatePipeline(filterConditions, order, skip) {
     { $match: filterConditions },
     {
       $lookup: {
-        from: "comments",
-        localField: "_id",
-        foreignField: "postId",
-        as: "comments",
-      },
-    },
-    {
-      $addFields: {
-        averageRating: {
-          $ifNull: [{ $avg: "$comments.rating" }, 1],
-        },
-      },
-    },
-    {
-      $lookup: {
         from: "users",
         localField: "authorId",
         foreignField: "_id",
@@ -64,6 +49,16 @@ export function buildAggregatePipeline(filterConditions, order, skip) {
     },
     {
       $unwind: "$authorData",
+    },
+    {
+      $addFields: {
+        averageRating: {
+          $ifNull: [
+            { $avg: { $map: { input: "$ratings", as: "r", in: "$$r.rate" } } },
+            1,
+          ],
+        },
+      },
     },
 
     {
@@ -75,6 +70,7 @@ export function buildAggregatePipeline(filterConditions, order, skip) {
         likes: 1,
         category: 1,
         public: 1,
+        ratings: 1,
         _id: 1,
         authorId: 1,
         averageRating: 1,

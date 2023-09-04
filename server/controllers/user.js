@@ -4,10 +4,10 @@ import User from "../models/user.js";
 export const getUserPosts = async (req, res) => {
   const { userId } = req.params;
   try {
-    const posts = await Post.find({ authorId: userId }).populate(
-      "authorId",
-      "name surname"
-    );
+    const posts = await Post.find({ authorId: userId })
+      .populate("authorId", "name surname")
+      .sort({ createdDate: -1 });
+
     return res.json({ posts });
   } catch (err) {
     return res.status(401).json({ error: err.message });
